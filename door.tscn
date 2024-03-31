@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://28nrvylxh6wa"]
+
+[ext_resource type="Texture2D" uid="uid://be4s7g1vyhonq" path="res://door.png" id="1_sxq3n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pni5c"]
+size = Vector2(24, 4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3gkaw"]
+radius = 2.0
+
+[node name="Door" type="Node2D"]
+
+[node name="door" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="door"]
+texture_filter = 1
+texture = ExtResource("1_sxq3n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door"]
+shape = SubResource("RectangleShape2D_pni5c")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(10, 0)
+shape = SubResource("CircleShape2D_3gkaw")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("../door")
+node_b = NodePath("../StaticBody2D")
+disable_collision = false
